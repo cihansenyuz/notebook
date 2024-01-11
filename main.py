@@ -3,11 +3,10 @@ def getNotes(sourceFileName):
     '''(string) -> list
     This function reads the file and creates a list from the data, returns the list
     '''
-    file = open(sourceFileName, "r")
-    tempList = []
-    for line in file:
-        tempList.append(line)
-    file.close()
+    with open(sourceFileName, "r") as file:
+        tempList = []
+        for line in file:
+            tempList.append(line)
     return tempList
 
 def printNotes():
@@ -17,7 +16,7 @@ def printNotes():
     print("###YOUR NOTES###")
     counter = 1
     for notes in noteList:
-        print(counter, end=" ")
+        print(counter, end=") ")
         print(notes, end='')
         counter = counter + 1
     print("################")
@@ -47,10 +46,9 @@ while 1:
         
 ###save the edited list to file & close it###
     if selection == '0':
-        file = open("notes.txt", "w")
-        for notes in noteList:
-            file.write(notes)
-        file.close()
+        with open("notes.txt", "w") as file:
+            for notes in noteList:
+                file.write(notes)
         exit()
 #############################################
 
