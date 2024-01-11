@@ -3,11 +3,16 @@ def getNotes(sourceFileName):
     '''(string) -> list
     This function reads the file and creates a list from the data, returns the list
     '''
-    with open(sourceFileName, "r") as file:
-        tempList = []
-        for line in file:
-            tempList.append(line)
-    return tempList
+    try:
+        with open(sourceFileName, "r") as file:
+            tempList = []
+            for line in file:
+                tempList.append(line)
+        return tempList
+    except FileNotFoundError:
+        print("Warning: No file found, if you had saved notes, check whether the directory is correct\n")
+    except Exception:
+        print("Error: Something went wrong, please try again\n")
 
 def printNotes():
     '''(none) -> none
@@ -24,11 +29,12 @@ def printNotes():
 
 ###get saved notes from previous run###
 noteList = getNotes("notes.txt")
-printNotes()
+
 #######################################
 
 ###ask user action & editing the list#########
 while 1:
+    printNotes()
     selection = input("\n1: New note\n2: Edit note\n3: Delete note\n0: Exit\nSELECT AN ACTION: ")
     if selection == '1':
         newNote = input("Type your note and press Enter\n") + '\n'
@@ -41,14 +47,12 @@ while 1:
     elif selection == '3':
         index = int(input("Enter the index of the note to be deleted: ")) - 1
         noteList.remove(noteList[index])
-    printNotes()
-#############################################
-        
-###save the edited list to file & close it###
-    if selection == '0':
+    elif selection == '0':
         with open("notes.txt", "w") as file:
             for notes in noteList:
                 file.write(notes)
         exit()
+    else:
+        input("ERROR: Not a valid action, please try again...\Enter to continue")
+    
 #############################################
-
