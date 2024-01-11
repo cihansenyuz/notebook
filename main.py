@@ -1,61 +1,56 @@
-
-fileName = "notes.txt"
-
-#f.readlines() reads all lines
-#f.readline() reads one line
-#for line in f:
-#    print(line, end='')   reads all lines 1 by 1
-#f.tell() returns where are you in the file
-#f.seek(x) goes to the x position in the file
-
-
-def getBeginOfNotes(sourceFile):
-    '''(file) -> list
-    This function reads the file and figure out how many note there are
+### functions ######
+def getNotes(sourceFileName):
+    '''(string) -> list
+    This function reads the file and creates a list from the data, returns the list
     '''
-    file.seek(0)                            #just in case, fix pointer position
-    beginOfNotes = [0]                      #first line always begins at 0
-    posCounter = 0
+    file = open(sourceFileName, "r")
+    tempList = []
     for line in file:
-        for i in line:
-            if i == '\n':
-                beginOfNotes.append(posCounter+1)  #next position is the beginning of next note
-            posCounter = posCounter + 1
-    beginOfNotes.pop()                      #remove the last one cause it is eof
-    file.seek(0)                            #leave the pointer at the begining
-    return beginOfNotes
+        tempList.append(line)
+    file.close()
+    return tempList
 
+def printNotes():
+    '''(none) -> none
+    This function prints all the notes in the list
+    '''
+    print("###YOUR NOTES###")
+    counter = 1
+    for notes in noteList:
+        print(counter, end=" ")
+        print(notes, end='')
+        counter = counter + 1
+    print("################")
+####################
 
-#first try to open if there is existing file
-#if not, then create a new one
-try:
-    file = open(fileName, "r+")  
-                
-except FileNotFoundError:
-    print("No saved notes found; if it is not expected, check notes.txt file is in correct directory")
-    file = open("notes.txt", "a+")
+###get saved notes from previous run###
+noteList = getNotes("notes.txt")
+printNotes()
+#######################################
 
-#get line beginning positions to know where to write new data
-lineBeginningsPos = getBeginOfNotes(file)
+###ask user action & editing the list#########
+while 1:
+    selection = input("\n1: New note\n2: Edit note\n3: Delete note\n0: Exit\nSELECT AN ACTION: ")
+    if selection == '1':
+        newNote = input("Type your note and press Enter\n") + '\n'
+        noteList.append(newNote)
+    elif selection == '2':
+        index = int(input("Enter the index of the note to be edited: ")) - 1
+        newNote = input("Type your edited note and press Enter\n") + '\n'
+        noteList.remove(noteList[index])
+        noteList.insert(index, newNote)
+    elif selection == '3':
+        index = int(input("Enter the index of the note to be deleted: ")) - 1
+        noteList.remove(noteList[index])
+    printNotes()
+#############################################
+        
+###save the edited list to file & close it###
+    if selection == '0':
+        file = open("notes.txt", "w")
+        for notes in noteList:
+            file.write(notes)
+        file.close()
+        exit()
+#############################################
 
-#ask user action
-selection = input("1: New note\n2: Edit note\n3: Delete note\n0: Exit\n")
-if selection == '1':
-    newNote = input("Type your note and press Enter\n") #new line added to go second line in the txt
-    file.seek(0,2)          #go to end of the file
-    file.write(newNote)
-
-
-print("YOUR NOTES\n")
-file.seek(0)
-for line in file:
-    print(line, end='')
-
-
-
-
-
-
-
-
-file.close()
