@@ -5,7 +5,6 @@ import sys
 app = QApplication(sys.argv)
 
 ui = MainWindow()
-ui.printNotes()
 
 ui.show()
 app.exec()
