@@ -25,8 +25,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.exitButton.clicked.connect(noteManager.exitAction)                   #
         ###########################################################################
 
-        #self.listWidget.
-
     def printNotes(self):
         self.listWidget.clear()
         noteIndex = 1
