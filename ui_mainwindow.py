@@ -15,9 +15,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QHBoxLayout, QLineEdit, QMainWindow,
-    QPushButton, QSizePolicy, QSpacerItem, QStatusBar,
-    QTextBrowser, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QHBoxLayout, QLineEdit, QListWidget,
+    QListWidgetItem, QMainWindow, QPushButton, QSizePolicy,
+    QSpacerItem, QStatusBar, QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -28,10 +28,10 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName(u"centralwidget")
         self.verticalLayout = QVBoxLayout(self.centralwidget)
         self.verticalLayout.setObjectName(u"verticalLayout")
-        self.textBrowser = QTextBrowser(self.centralwidget)
-        self.textBrowser.setObjectName(u"textBrowser")
+        self.listWidget = QListWidget(self.centralwidget)
+        self.listWidget.setObjectName(u"listWidget")
 
-        self.verticalLayout.addWidget(self.textBrowser)
+        self.verticalLayout.addWidget(self.listWidget)
 
         self.lineEdit = QLineEdit(self.centralwidget)
         self.lineEdit.setObjectName(u"lineEdit")

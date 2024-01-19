@@ -18,24 +18,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         ### button signals and slots connections ############################
         self.newButton.clicked.connect(lambda: noteManager.newAction(self)) #
         self.doneButton.clicked.connect(noteManager.doneAction)             #
-        self.editButton.clicked.connect(noteManager.editAction)             #
-        self.deleteButton.clicked.connect(noteManager.deleteAction)         #
+        self.editButton.clicked.connect(lambda: noteManager.editAction(self))             #
+        self.deleteButton.clicked.connect(lambda: noteManager.deleteAction(self))         #
         self.exitButton.clicked.connect(noteManager.exitAction)             #
         #####################################################################
 
     def printNotes(self):
-        '''(int) -> none
-        This function prints all the notes in the list with index
-        '''
-        #self.textBrowser.setPlainText("### YOUR NOTES ###")
-        counter = 1
-        tempStr = "### YOUR NOTES ###\n\n"
+        self.listWidget.clear()
+        noteIndex = 1
         for notes in noteManager.noteList:
-            tempStr = tempStr + str(counter)
-            tempStr = tempStr + ") "
-            tempStr = tempStr + notes
-            counter = counter + 1
-        tempStr = tempStr + "\n################\n\n"
-        tempStr = tempStr + (str(len(noteManager.doneList)))
-        tempStr = tempStr + " note(s) marked 'done'"
-        self.textBrowser.setPlainText(tempStr)
+            notes = str(noteIndex) + ") " + notes
+            self.listWidget.addItem(notes)
+            noteIndex = noteIndex + 1

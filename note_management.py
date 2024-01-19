@@ -29,17 +29,17 @@ def doneAction(): # mark done case, take index, remove from the noteList and app
     noteList.remove(noteList[index])        # first, remove from the noteList
     doneList.append(tempNote)              # then, append it to doneList
 
-def editAction(): # edit note case, take index and input, remove old one, insert new one
+def editAction(ui): # edit note case, take index and input, remove old one, insert new one
     index = int(input("Enter the index of the note to be edited: ")) - 1        # convert the input to integer since noteList needs integer index. -1 is to offset index 1 to 0.
     newNote = input("Type your edited note and press Enter\n") + '\n'           # added \n to make the file ready for the next note.
     noteList.remove(noteList[index])
     noteList.insert(index, newNote)
-    printNotes()
+    ui.printNotes()
 
-def deleteAction(): # delete note case, take index, remove from the noteList
+def deleteAction(ui): # delete note case, take index, remove from the noteList
     index = int(input("Enter the index of the note to delete: ")) - 1
     noteList.remove(noteList[index])
-    printNotes()
+    ui.printNotes()
 
 def exitAction(): # quiting process of the program, save the updated lists to txt files
     with open("notes.txt", "w") as file:
@@ -53,5 +53,4 @@ def exitAction(): # quiting process of the program, save the updated lists to tx
 ### get saved notes from previous run ##
 noteList = getNotes("notes.txt")       #
 doneList = getNotes("done_notes.txt")  #
-printNotes()                           #
 ########################################
