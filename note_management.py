@@ -17,27 +17,29 @@ def getNotes(sourceFileName):
         print("Error: Something went wrong, please try again\n")
     return tempList
 
+#### slot functions ####
 def newAction(ui): # new note case, take input, append to the noteList
     newNote = ui.lineEdit.text() + '\n'
     ui.lineEdit.clear()
     noteList.append(newNote)
     ui.printNotes()
 
-def doneAction(): # mark done case, take index, remove from the noteList and append to the doneList
-    index = int(input("Enter the index of the note to mark it done: ")) - 1
+def doneAction(ui): # mark done case, take index, remove from the noteList and append to the doneList
+    index = ui.listWidget.currentRow()
     tempNote = noteList[index]             # keep it temporarily
-    noteList.remove(noteList[index])        # first, remove from the noteList
+    noteList.remove(noteList[index])       # first, remove from the noteList
     doneList.append(tempNote)              # then, append it to doneList
 
 def editAction(ui): # edit note case, take index and input, remove old one, insert new one
-    index = int(input("Enter the index of the note to be edited: ")) - 1        # convert the input to integer since noteList needs integer index. -1 is to offset index 1 to 0.
-    newNote = input("Type your edited note and press Enter\n") + '\n'           # added \n to make the file ready for the next note.
+    newNote = ui.lineEdit.text() + '\n'
+    ui.lineEdit.clear()
+    index = ui.listWidget.currentRow()
     noteList.remove(noteList[index])
     noteList.insert(index, newNote)
     ui.printNotes()
 
 def deleteAction(ui): # delete note case, take index, remove from the noteList
-    index = int(input("Enter the index of the note to delete: ")) - 1
+    index = ui.listWidget.currentRow()
     noteList.remove(noteList[index])
     ui.printNotes()
 
@@ -49,6 +51,7 @@ def exitAction(): # quiting process of the program, save the updated lists to tx
         for notes in doneList:
             file.write(str(notes))
     exit()
+###################
 
 ### get saved notes from previous run ##
 noteList = getNotes("notes.txt")       #

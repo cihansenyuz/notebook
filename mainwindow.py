@@ -14,14 +14,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.setWindowTitle("NoteBook v2.0")
         self.printNotes()
-
-        ### button signals and slots connections ############################
-        self.newButton.clicked.connect(lambda: noteManager.newAction(self)) #
-        self.doneButton.clicked.connect(noteManager.doneAction)             #
-        self.editButton.clicked.connect(lambda: noteManager.editAction(self))             #
-        self.deleteButton.clicked.connect(lambda: noteManager.deleteAction(self))         #
-        self.exitButton.clicked.connect(noteManager.exitAction)             #
-        #####################################################################
+        self.lineEdit.setText("Type your new note here")
+        
+        ### button signals and slots connections ##################################
+        self.newButton.clicked.connect(lambda: noteManager.newAction(self))       #
+        self.doneButton.clicked.connect(lambda:noteManager.doneAction(self))      #
+        self.editButton.clicked.connect(lambda: noteManager.editAction(self))     #
+        self.deleteButton.clicked.connect(lambda: noteManager.deleteAction(self)) #
+        self.exitButton.clicked.connect(noteManager.exitAction)                   #
+        ###########################################################################
 
     def printNotes(self):
         self.listWidget.clear()
