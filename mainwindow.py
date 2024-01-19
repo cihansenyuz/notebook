@@ -16,6 +16,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.printNotes()
         self.lineEdit.setText("Type your new note here")
         self.listWidget.itemSelectionChanged.connect(self.onItemSelectionChanged)
+        self.textBrowser.append("Welcome to Notebook Application!\nEnter a note to text line and hit New Note button to add it.\nTo mark an existing note as done, select the note first, then hit the mark as done button.\nTo edit an existing note, select the note first, then type your edited note in the text line, and hit the edit button.\nTo delete a note, select the note first, then hit the delete button.\nOnce your are all done, click on the save and exit button to save all changes onto your disk!")
 
         ### button signals and slots connections ##################################
         self.newButton.clicked.connect(lambda: noteManager.newAction(self))       #

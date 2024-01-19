@@ -7,114 +7,168 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>600</height>
+    <height>605</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout" stretch="3,1,0,0,0">
+   <layout class="QVBoxLayout" name="verticalLayout" stretch="0,3,0,1,0,0,0">
+    <item>
+     <widget class="QLabel" name="labelListWidget">
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>YOUR NOTES</string>
+      </property>
+     </widget>
+    </item>
     <item>
      <widget class="QListWidget" name="listWidget"/>
+    </item>
+    <item>
+     <widget class="QLabel" name="labelTextBrowser">
+      <property name="font">
+       <font>
+        <pointsize>8</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>MESSAGE HISTORY</string>
+      </property>
+     </widget>
     </item>
     <item>
      <widget class="QTextBrowser" name="textBrowser"/>
     </item>
     <item>
+     <widget class="QLabel" name="labelLineEdit">
+      <property name="text">
+       <string>TEXT LINE</string>
+      </property>
+     </widget>
+    </item>
+    <item>
      <widget class="QLineEdit" name="lineEdit"/>
     </item>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <item>
-       <widget class="QPushButton" name="newButton">
-        <property name="statusTip">
-         <string>Save the note written as a new note</string>
-        </property>
-        <property name="text">
-         <string>New Note</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="doneButton">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="statusTip">
-         <string>Mark the selected note as done</string>
-        </property>
-        <property name="text">
-         <string>Mark as Done</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="editButton">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="statusTip">
-         <string>Replace the selected note with the written one</string>
-        </property>
-        <property name="text">
-         <string>Edit Note</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="deleteButton">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="statusTip">
-         <string>Delete the selected note</string>
-        </property>
-        <property name="text">
-         <string>Delete Note</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
-      <item>
-       <spacer name="horizontalSpacer">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
-       <widget class="QPushButton" name="exitButton">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>125</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="statusTip">
-         <string>Save the changes and exit program</string>
-        </property>
-        <property name="text">
-         <string>Save and Exit</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
+     <widget class="QGroupBox" name="groupBox">
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="title">
+       <string>Action Buttons</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="flat">
+       <bool>false</bool>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QPushButton" name="newButton">
+           <property name="statusTip">
+            <string>Save the note written as a new note</string>
+           </property>
+           <property name="text">
+            <string>New Note</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="doneButton">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="statusTip">
+            <string>Mark the selected note as done</string>
+           </property>
+           <property name="text">
+            <string>Mark as Done</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="editButton">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="statusTip">
+            <string>Replace the selected note with the written one</string>
+           </property>
+           <property name="text">
+            <string>Edit Note</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="deleteButton">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="statusTip">
+            <string>Delete the selected note</string>
+           </property>
+           <property name="text">
+            <string>Delete Note</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="exitButton">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>125</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="statusTip">
+            <string>Save the changes and exit program</string>
+           </property>
+           <property name="text">
+            <string>Save and Exit</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
     </item>
    </layout>
   </widget>
