@@ -32,8 +32,9 @@ def doneAction(ui): # mark done case, take index, remove from the noteList and a
     doneList.append(tempNote)              # then, append it to doneList
     ui.printNotes()
     ui.resetButtonStates()
-    ui.textBrowser.append("Action: A note is marked as 'done'.")
-    ui.textBrowser.append(str(len(noteList)), " note(s) are saved as done...")
+    tempStr = "Action: " + str(index+1) + ". note is marked as 'done'."
+    ui.textBrowser.append(tempStr)
+    ui.textBrowser.append(str(len(doneList)), " note(s) are saved as done...")
 
 def editAction(ui): # edit note case, take index and input, remove old one, insert new one
     newNote = ui.lineEdit.text() + '\n'
@@ -43,14 +44,17 @@ def editAction(ui): # edit note case, take index and input, remove old one, inse
     noteList.insert(index, newNote)
     ui.printNotes()
     ui.resetButtonStates()
-    ui.textBrowser.append("Action: A note is edited.")
+    tempStr = "Action: " + str(index+1) + ". note is edited."
+    ui.textBrowser.append(tempStr)
 
 def deleteAction(ui): # delete note case, take index, remove from the noteList
     index = ui.listWidget.currentRow()
     noteList.remove(noteList[index])
     ui.printNotes()
     ui.resetButtonStates()
-    ui.textBrowser.append("Action: A note is deleted.")
+    tempStr = "Action: " + str(index+1) + ". note is deleted."
+    ui.textBrowser.append(tempStr)
+    
 
 def exitAction(): # quiting process of the program, save the updated lists to txt files
     with open("notes.txt", "w") as file:
