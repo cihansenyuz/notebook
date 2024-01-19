@@ -14,9 +14,12 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout">
+   <layout class="QVBoxLayout" name="verticalLayout" stretch="3,1,0,0,0">
     <item>
      <widget class="QListWidget" name="listWidget"/>
+    </item>
+    <item>
+     <widget class="QTextBrowser" name="textBrowser"/>
     </item>
     <item>
      <widget class="QLineEdit" name="lineEdit"/>
@@ -25,6 +28,9 @@
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
        <widget class="QPushButton" name="newButton">
+        <property name="statusTip">
+         <string>Save the note written as a new note</string>
+        </property>
         <property name="text">
          <string>New Note</string>
         </property>
@@ -32,6 +38,12 @@
       </item>
       <item>
        <widget class="QPushButton" name="doneButton">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="statusTip">
+         <string>Mark the selected note as done</string>
+        </property>
         <property name="text">
          <string>Mark as Done</string>
         </property>
@@ -39,6 +51,12 @@
       </item>
       <item>
        <widget class="QPushButton" name="editButton">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="statusTip">
+         <string>Replace the selected note with the written one</string>
+        </property>
         <property name="text">
          <string>Edit Note</string>
         </property>
@@ -46,6 +64,12 @@
       </item>
       <item>
        <widget class="QPushButton" name="deleteButton">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="statusTip">
+         <string>Delete the selected note</string>
+        </property>
         <property name="text">
          <string>Delete Note</string>
         </property>
@@ -81,6 +105,9 @@
           <width>125</width>
           <height>0</height>
          </size>
+        </property>
+        <property name="statusTip">
+         <string>Save the changes and exit program</string>
         </property>
         <property name="text">
          <string>Save and Exit</string>

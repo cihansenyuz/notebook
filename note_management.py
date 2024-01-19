@@ -29,6 +29,8 @@ def doneAction(ui): # mark done case, take index, remove from the noteList and a
     tempNote = noteList[index]             # keep it temporarily
     noteList.remove(noteList[index])       # first, remove from the noteList
     doneList.append(tempNote)              # then, append it to doneList
+    ui.printNotes()
+    ui.resetButtonStates()
 
 def editAction(ui): # edit note case, take index and input, remove old one, insert new one
     newNote = ui.lineEdit.text() + '\n'
@@ -37,11 +39,13 @@ def editAction(ui): # edit note case, take index and input, remove old one, inse
     noteList.remove(noteList[index])
     noteList.insert(index, newNote)
     ui.printNotes()
+    ui.resetButtonStates()
 
 def deleteAction(ui): # delete note case, take index, remove from the noteList
     index = ui.listWidget.currentRow()
     noteList.remove(noteList[index])
     ui.printNotes()
+    ui.resetButtonStates()
 
 def exitAction(): # quiting process of the program, save the updated lists to txt files
     with open("notes.txt", "w") as file:

@@ -15,7 +15,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.setWindowTitle("NoteBook v2.0")
         self.printNotes()
         self.lineEdit.setText("Type your new note here")
-        
+        self.listWidget.itemSelectionChanged.connect(self.onItemSelectionChanged)
+
         ### button signals and slots connections ##################################
         self.newButton.clicked.connect(lambda: noteManager.newAction(self))       #
         self.doneButton.clicked.connect(lambda:noteManager.doneAction(self))      #
@@ -24,6 +25,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.exitButton.clicked.connect(noteManager.exitAction)                   #
         ###########################################################################
 
+        #self.listWidget.
+
     def printNotes(self):
         self.listWidget.clear()
         noteIndex = 1
@@ -31,3 +34,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             notes = str(noteIndex) + ") " + notes
             self.listWidget.addItem(notes)
             noteIndex = noteIndex + 1
+
+    def onItemSelectionChanged(self):
+        self.newButton.setEnabled(False)
+        self.doneButton.setEnabled(True)
+        self.editButton.setEnabled(True)
+        self.deleteButton.setEnabled(True)
+
+    def resetButtonStates(self):
+        self.newButton.setEnabled(True)
+        self.doneButton.setEnabled(False)
+        self.editButton.setEnabled(False)
+        self.deleteButton.setEnabled(False)

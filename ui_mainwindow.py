@@ -17,7 +17,8 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QHBoxLayout, QLineEdit, QListWidget,
     QListWidgetItem, QMainWindow, QPushButton, QSizePolicy,
-    QSpacerItem, QStatusBar, QVBoxLayout, QWidget)
+    QSpacerItem, QStatusBar, QTextBrowser, QVBoxLayout,
+    QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -33,6 +34,11 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addWidget(self.listWidget)
 
+        self.textBrowser = QTextBrowser(self.centralwidget)
+        self.textBrowser.setObjectName(u"textBrowser")
+
+        self.verticalLayout.addWidget(self.textBrowser)
+
         self.lineEdit = QLineEdit(self.centralwidget)
         self.lineEdit.setObjectName(u"lineEdit")
 
@@ -47,16 +53,19 @@ class Ui_MainWindow(object):
 
         self.doneButton = QPushButton(self.centralwidget)
         self.doneButton.setObjectName(u"doneButton")
+        self.doneButton.setEnabled(False)
 
         self.horizontalLayout.addWidget(self.doneButton)
 
         self.editButton = QPushButton(self.centralwidget)
         self.editButton.setObjectName(u"editButton")
+        self.editButton.setEnabled(False)
 
         self.horizontalLayout.addWidget(self.editButton)
 
         self.deleteButton = QPushButton(self.centralwidget)
         self.deleteButton.setObjectName(u"deleteButton")
+        self.deleteButton.setEnabled(False)
 
         self.horizontalLayout.addWidget(self.deleteButton)
 
@@ -83,6 +92,8 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addLayout(self.horizontalLayout_2)
 
+        self.verticalLayout.setStretch(0, 3)
+        self.verticalLayout.setStretch(1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
@@ -95,10 +106,25 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
+#if QT_CONFIG(statustip)
+        self.newButton.setStatusTip(QCoreApplication.translate("MainWindow", u"Save the note written as a new note", None))
+#endif // QT_CONFIG(statustip)
         self.newButton.setText(QCoreApplication.translate("MainWindow", u"New Note", None))
+#if QT_CONFIG(statustip)
+        self.doneButton.setStatusTip(QCoreApplication.translate("MainWindow", u"Mark the selected note as done", None))
+#endif // QT_CONFIG(statustip)
         self.doneButton.setText(QCoreApplication.translate("MainWindow", u"Mark as Done", None))
+#if QT_CONFIG(statustip)
+        self.editButton.setStatusTip(QCoreApplication.translate("MainWindow", u"Replace the selected note with the written one", None))
+#endif // QT_CONFIG(statustip)
         self.editButton.setText(QCoreApplication.translate("MainWindow", u"Edit Note", None))
+#if QT_CONFIG(statustip)
+        self.deleteButton.setStatusTip(QCoreApplication.translate("MainWindow", u"Delete the selected note", None))
+#endif // QT_CONFIG(statustip)
         self.deleteButton.setText(QCoreApplication.translate("MainWindow", u"Delete Note", None))
+#if QT_CONFIG(statustip)
+        self.exitButton.setStatusTip(QCoreApplication.translate("MainWindow", u"Save the changes and exit program", None))
+#endif // QT_CONFIG(statustip)
         self.exitButton.setText(QCoreApplication.translate("MainWindow", u"Save and Exit", None))
     # retranslateUi
 
