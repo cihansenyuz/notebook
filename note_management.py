@@ -17,28 +17,16 @@ def getNotes(sourceFileName):
         print("Error: Something went wrong, please try again\n")
     return tempList
 
-def printNotes():
-    '''(int) -> none
-    This function prints all the notes in the list with index
-    '''
-    print("###YOUR NOTES###")
-    counter = 1
-    for notes in noteList:
-        print(counter, end=") ")
-        print(notes, end='')
-        counter = counter + 1
-    print("################")
-    print(len(doneList), "note(s) marked 'done'")
-
-def newAction(): # new note case, take input, append to the noteList
-    newNote = input("Type your note and press Enter\n") + '\n'
+def newAction(ui): # new note case, take input, append to the noteList
+    newNote = ui.lineEdit.text() + '\n'
+    ui.lineEdit.clear()
     noteList.append(newNote)
-    printNotes()
+    ui.printNotes()
 
 def doneAction(): # mark done case, take index, remove from the noteList and append to the doneList
     index = int(input("Enter the index of the note to mark it done: ")) - 1
     tempNote = noteList[index]             # keep it temporarily
-    noteList.remove(noteList[index])  # first, remove from the noteList
+    noteList.remove(noteList[index])        # first, remove from the noteList
     doneList.append(tempNote)              # then, append it to doneList
 
 def editAction(): # edit note case, take index and input, remove old one, insert new one
