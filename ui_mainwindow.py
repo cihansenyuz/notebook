@@ -16,8 +16,8 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QHBoxLayout, QLineEdit, QMainWindow,
-    QPushButton, QSizePolicy, QStatusBar, QTextBrowser,
-    QVBoxLayout, QWidget)
+    QPushButton, QSizePolicy, QSpacerItem, QStatusBar,
+    QTextBrowser, QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -45,6 +45,11 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout.addWidget(self.newButton)
 
+        self.doneButton = QPushButton(self.centralwidget)
+        self.doneButton.setObjectName(u"doneButton")
+
+        self.horizontalLayout.addWidget(self.doneButton)
+
         self.editButton = QPushButton(self.centralwidget)
         self.editButton.setObjectName(u"editButton")
 
@@ -55,13 +60,28 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout.addWidget(self.deleteButton)
 
-        self.exitButton = QPushButton(self.centralwidget)
-        self.exitButton.setObjectName(u"exitButton")
-
-        self.horizontalLayout.addWidget(self.exitButton)
-
 
         self.verticalLayout.addLayout(self.horizontalLayout)
+
+        self.horizontalLayout_2 = QHBoxLayout()
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_2.addItem(self.horizontalSpacer)
+
+        self.exitButton = QPushButton(self.centralwidget)
+        self.exitButton.setObjectName(u"exitButton")
+        sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.exitButton.sizePolicy().hasHeightForWidth())
+        self.exitButton.setSizePolicy(sizePolicy)
+        self.exitButton.setMinimumSize(QSize(125, 0))
+
+        self.horizontalLayout_2.addWidget(self.exitButton)
+
+
+        self.verticalLayout.addLayout(self.horizontalLayout_2)
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QStatusBar(MainWindow)
@@ -76,6 +96,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.newButton.setText(QCoreApplication.translate("MainWindow", u"New Note", None))
+        self.doneButton.setText(QCoreApplication.translate("MainWindow", u"Mark as Done", None))
         self.editButton.setText(QCoreApplication.translate("MainWindow", u"Edit Note", None))
         self.deleteButton.setText(QCoreApplication.translate("MainWindow", u"Delete Note", None))
         self.exitButton.setText(QCoreApplication.translate("MainWindow", u"Save and Exit", None))
