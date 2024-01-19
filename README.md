@@ -7,8 +7,12 @@ first release 11.01.2024
 - saves notes to a TXT file
 
 update 14.01.2024
-- new feature added: marking notes as done
+- a new feature added: marking notes as done
 - some code improvements are done to the block of writing to a file.
 - some comments are added
+
+update 19.01.2024
+- A user interface is added
+- push button functions are implemented
 
 Cihan Şenyüz
