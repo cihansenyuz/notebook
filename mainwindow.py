@@ -5,7 +5,7 @@
 
 from PySide6.QtWidgets import QMainWindow, QDialog
 from ui_mainwindow import Ui_MainWindow
-from ui_help_dialog import Ui_Dialog
+from help_dialog import DialogWindow
 import note_management as noteManager
 
 class MainWindow(QMainWindow, Ui_MainWindow):
@@ -25,8 +25,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.editButton.clicked.connect(lambda: noteManager.editAction(self))     #
         self.deleteButton.clicked.connect(lambda: noteManager.deleteAction(self)) #
         self.exitButton.clicked.connect(noteManager.exitAction)                   #
-        self.toggleListButton.clicked.connect(self.onToggleListButtonClicked)
-        self.helpButton.clicked.connect(self.onHelpButtonClicked)
+        self.toggleListButton.clicked.connect(self.onToggleListButtonClicked)     #
+        self.helpButton.clicked.connect(self.onHelpButtonClicked)                 #
+        self.clearButton.clicked.connect(self.onClearButtonClicked)
         ###########################################################################
 
     def printNotes(self):
@@ -72,10 +73,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.resetButtonStates()
 
     def onHelpButtonClicked(self):
-        self.helpUi = QDialog()
-        self.helpDialog = Ui_Dialog()
-        self.helpDialog.setupUi(self.helpUi)
-        self.helpUi.show()
+        self.helpUi = DialogWindow()
 
-    def onReady2goButtonClicked(self):
-        pass
+    def onClearButtonClicked(self):
+        self.textBrowser.clear()

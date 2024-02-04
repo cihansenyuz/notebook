@@ -47,6 +47,24 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_3.addWidget(self.yourNotesListWidget)
 
+        self.horizontalLayout_3 = QHBoxLayout()
+        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
+        self.textLineLabel = QLabel(self.yourNotesGroupBox)
+        self.textLineLabel.setObjectName(u"textLineLabel")
+        font1 = QFont()
+        font1.setPointSize(10)
+        self.textLineLabel.setFont(font1)
+
+        self.horizontalLayout_3.addWidget(self.textLineLabel)
+
+        self.lineEdit = QLineEdit(self.yourNotesGroupBox)
+        self.lineEdit.setObjectName(u"lineEdit")
+
+        self.horizontalLayout_3.addWidget(self.lineEdit)
+
+
+        self.verticalLayout_3.addLayout(self.horizontalLayout_3)
+
 
         self.verticalLayout_5.addWidget(self.yourNotesGroupBox)
 
@@ -72,24 +90,6 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addWidget(self.stackedWidget)
 
-        self.horizontalLayout_3 = QHBoxLayout()
-        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
-        self.textLineLabel = QLabel(self.centralwidget)
-        self.textLineLabel.setObjectName(u"textLineLabel")
-        font1 = QFont()
-        font1.setPointSize(10)
-        self.textLineLabel.setFont(font1)
-
-        self.horizontalLayout_3.addWidget(self.textLineLabel)
-
-        self.lineEdit = QLineEdit(self.centralwidget)
-        self.lineEdit.setObjectName(u"lineEdit")
-
-        self.horizontalLayout_3.addWidget(self.lineEdit)
-
-
-        self.verticalLayout.addLayout(self.horizontalLayout_3)
-
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.messageHistoryBox = QGroupBox(self.centralwidget)
@@ -105,6 +105,25 @@ class Ui_MainWindow(object):
         self.textBrowser.setObjectName(u"textBrowser")
 
         self.verticalLayout_2.addWidget(self.textBrowser)
+
+        self.horizontalLayout_4 = QHBoxLayout()
+        self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
+        self.clearButton = QPushButton(self.messageHistoryBox)
+        self.clearButton.setObjectName(u"clearButton")
+
+        self.horizontalLayout_4.addWidget(self.clearButton)
+
+        self.helpButton = QPushButton(self.messageHistoryBox)
+        self.helpButton.setObjectName(u"helpButton")
+
+        self.horizontalLayout_4.addWidget(self.helpButton)
+
+        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_4.addItem(self.horizontalSpacer_2)
+
+
+        self.verticalLayout_2.addLayout(self.horizontalLayout_4)
 
 
         self.horizontalLayout.addWidget(self.messageHistoryBox)
@@ -158,11 +177,6 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_2.addItem(self.horizontalSpacer)
 
-        self.helpButton = QPushButton(self.centralwidget)
-        self.helpButton.setObjectName(u"helpButton")
-
-        self.horizontalLayout_2.addWidget(self.helpButton)
-
         self.exitButton = QPushButton(self.centralwidget)
         self.exitButton.setObjectName(u"exitButton")
         sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
@@ -177,7 +191,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addLayout(self.horizontalLayout_2)
 
-        self.verticalLayout.setStretch(2, 2)
+        self.verticalLayout.setStretch(1, 2)
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
@@ -197,18 +211,20 @@ class Ui_MainWindow(object):
 #if QT_CONFIG(statustip)
         self.yourNotesListWidget.setStatusTip(QCoreApplication.translate("MainWindow", u"This is your notebook page which lists all your notes", None))
 #endif // QT_CONFIG(statustip)
-        self.doneNotesGroupBox.setTitle(QCoreApplication.translate("MainWindow", u"Your Notes Marked as Done", None))
-#if QT_CONFIG(statustip)
-        self.doneNotesListWidget.setStatusTip(QCoreApplication.translate("MainWindow", u"This is your notebook page which lists all your notes marked as done", None))
-#endif // QT_CONFIG(statustip)
         self.textLineLabel.setText(QCoreApplication.translate("MainWindow", u"Text Line:", None))
 #if QT_CONFIG(statustip)
         self.lineEdit.setStatusTip(QCoreApplication.translate("MainWindow", u"This is where you type your notes", None))
+#endif // QT_CONFIG(statustip)
+        self.doneNotesGroupBox.setTitle(QCoreApplication.translate("MainWindow", u"Your Notes Marked as Done", None))
+#if QT_CONFIG(statustip)
+        self.doneNotesListWidget.setStatusTip(QCoreApplication.translate("MainWindow", u"This is your notebook page which lists all your notes marked as done", None))
 #endif // QT_CONFIG(statustip)
         self.messageHistoryBox.setTitle(QCoreApplication.translate("MainWindow", u"Message History", None))
 #if QT_CONFIG(statustip)
         self.textBrowser.setStatusTip(QCoreApplication.translate("MainWindow", u"This is the window where you can see informative messages", None))
 #endif // QT_CONFIG(statustip)
+        self.clearButton.setText(QCoreApplication.translate("MainWindow", u"Clear History", None))
+        self.helpButton.setText(QCoreApplication.translate("MainWindow", u"Help", None))
 #if QT_CONFIG(statustip)
         self.newButton.setStatusTip(QCoreApplication.translate("MainWindow", u"Save the note written as a new note", None))
 #endif // QT_CONFIG(statustip)
@@ -229,7 +245,6 @@ class Ui_MainWindow(object):
         self.toggleListButton.setStatusTip(QCoreApplication.translate("MainWindow", u"Toggle between your notes and notes marked as done", None))
 #endif // QT_CONFIG(statustip)
         self.toggleListButton.setText(QCoreApplication.translate("MainWindow", u"Toggle Note List", None))
-        self.helpButton.setText(QCoreApplication.translate("MainWindow", u"Help", None))
 #if QT_CONFIG(statustip)
         self.exitButton.setStatusTip(QCoreApplication.translate("MainWindow", u"Save the changes and exit program", None))
 #endif // QT_CONFIG(statustip)
