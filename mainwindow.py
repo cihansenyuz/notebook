@@ -19,7 +19,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.textBrowser.append("Welcome to Notebook Application!\nClick the Help Button to see instructions about the application")
 
         ########## signals and slots connections ##################################
-        self.yourNotesListWidget.itemSelectionChanged.connect(self.onItemSelectionChanged)
+        self.yourNotesListWidget.itemPressed.connect(self.onNotesItemSelectionChanged)
+        self.doneNotesListWidget.itemSelectionChanged.connect(self.onDoneItemSelectionChanged)
         self.newButton.clicked.connect(lambda: noteManager.newAction(self))       #
         self.doneButton.clicked.connect(lambda:noteManager.doneAction(self))      #
         self.editButton.clicked.connect(lambda: noteManager.editAction(self))     #
@@ -46,13 +47,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.doneNotesListWidget.addItem(notes)
             noteIndex = noteIndex + 1
 
-    def onItemSelectionChanged(self):
+    def onNotesItemSelectionChanged(self):
         self.newButton.setEnabled(False)
         self.doneButton.setEnabled(True)
         self.editButton.setEnabled(True)
         self.deleteButton.setEnabled(True)
         selectedItem = self.yourNotesListWidget.currentRow()
-        self.lineEdit.setText(noteManager.noteList[selectedItem])
+        self.lineEdit.setText(noteManager.noteList[selectedItem]) # to copy content to lineEdit for user editting
+
+    def onDoneItemSelectionChanged(self):
+        self.deleteButton.setEnabled(True)
 
     def resetButtonStates(self):
         self.newButton.setEnabled(True)

@@ -26,6 +26,7 @@ def newAction(ui): # new note case, take input, append to the noteList
     ui.textBrowser.append("Action: New note is added.")
 
 def doneAction(ui): # mark done case, take index, remove from the noteList and append to the doneList
+    ui.lineEdit.clear()
     index = ui.yourNotesListWidget.currentRow()
     tempNote = noteList[index]             # keep it temporarily
     noteList.remove(noteList[index])       # first, remove from the noteList
@@ -34,7 +35,8 @@ def doneAction(ui): # mark done case, take index, remove from the noteList and a
     ui.resetButtonStates()
     tempStr = "Action: " + str(index+1) + ". note is marked as 'done'."
     ui.textBrowser.append(tempStr)
-    ui.textBrowser.append(str(len(doneList)), " note(s) are saved as done...")
+    tempStr = str(len(doneList)) + " note(s) are saved as done..."
+    ui.textBrowser.append(tempStr)
 
 def editAction(ui): # edit note case, take index and input, remove old one, insert new one
     newNote = ui.lineEdit.text() + '\n'
@@ -48,13 +50,20 @@ def editAction(ui): # edit note case, take index and input, remove old one, inse
     ui.textBrowser.append(tempStr)
 
 def deleteAction(ui): # delete note case, take index, remove from the noteList
-    index = ui.yourNotesListWidget.currentRow()
-    noteList.remove(noteList[index])
-    ui.printNotes()
-    ui.resetButtonStates()
-    tempStr = "Action: " + str(index+1) + ". note is deleted."
-    ui.textBrowser.append(tempStr)
-    
+    if ui.stackedWidget.currentIndex() == 0:
+        index = ui.yourNotesListWidget.currentRow()
+        noteList.remove(noteList[index])
+        ui.printNotes()
+        ui.resetButtonStates()
+        tempStr = "Action: " + str(index+1) + ". note is deleted."
+        ui.textBrowser.append(tempStr)
+    elif ui.stackedWidget.currentIndex() == 1:
+        index = ui.doneNotesListWidget.currentRow()
+        doneList.remove(doneList[index])
+        ui.printNotes()
+        ui.deleteButton.setEnabled(False)
+        tempStr = "Action: " + str(index+1) + ". note is deleted."
+        ui.textBrowser.append(tempStr)
 
 def exitAction(): # quiting process of the program, save the updated lists to txt files
     with open("notes.txt", "w") as file:
