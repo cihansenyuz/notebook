@@ -158,6 +158,11 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_2.addItem(self.horizontalSpacer)
 
+        self.helpButton = QPushButton(self.centralwidget)
+        self.helpButton.setObjectName(u"helpButton")
+
+        self.horizontalLayout_2.addWidget(self.helpButton)
+
         self.exitButton = QPushButton(self.centralwidget)
         self.exitButton.setObjectName(u"exitButton")
         sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
@@ -224,6 +229,7 @@ class Ui_MainWindow(object):
         self.toggleListButton.setStatusTip(QCoreApplication.translate("MainWindow", u"Toggle between your notes and notes marked as done", None))
 #endif // QT_CONFIG(statustip)
         self.toggleListButton.setText(QCoreApplication.translate("MainWindow", u"Toggle Note List", None))
+        self.helpButton.setText(QCoreApplication.translate("MainWindow", u"Help", None))
 #if QT_CONFIG(statustip)
         self.exitButton.setStatusTip(QCoreApplication.translate("MainWindow", u"Save the changes and exit program", None))
 #endif // QT_CONFIG(statustip)

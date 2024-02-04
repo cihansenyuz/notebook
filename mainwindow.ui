@@ -227,6 +227,13 @@
        </spacer>
       </item>
       <item>
+       <widget class="QPushButton" name="helpButton">
+        <property name="text">
+         <string>Help</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QPushButton" name="exitButton">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
