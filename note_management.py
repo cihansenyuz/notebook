@@ -26,7 +26,7 @@ def newAction(ui): # new note case, take input, append to the noteList
     ui.textBrowser.append("Action: New note is added.")
 
 def doneAction(ui): # mark done case, take index, remove from the noteList and append to the doneList
-    index = ui.listWidget.currentRow()
+    index = ui.yourNotesListWidget.currentRow()
     tempNote = noteList[index]             # keep it temporarily
     noteList.remove(noteList[index])       # first, remove from the noteList
     doneList.append(tempNote)              # then, append it to doneList
@@ -39,7 +39,7 @@ def doneAction(ui): # mark done case, take index, remove from the noteList and a
 def editAction(ui): # edit note case, take index and input, remove old one, insert new one
     newNote = ui.lineEdit.text() + '\n'
     ui.lineEdit.clear()
-    index = ui.listWidget.currentRow()
+    index = ui.yourNotesListWidget.currentRow()
     noteList.remove(noteList[index])
     noteList.insert(index, newNote)
     ui.printNotes()
@@ -48,7 +48,7 @@ def editAction(ui): # edit note case, take index and input, remove old one, inse
     ui.textBrowser.append(tempStr)
 
 def deleteAction(ui): # delete note case, take index, remove from the noteList
-    index = ui.listWidget.currentRow()
+    index = ui.yourNotesListWidget.currentRow()
     noteList.remove(noteList[index])
     ui.printNotes()
     ui.resetButtonStates()

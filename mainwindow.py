@@ -44,12 +44,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             noteIndex = noteIndex + 1
 
     def onItemSelectionChanged(self):
-        if self.stackedWidget.currentIndex() == 0:
-            self.newButton.setEnabled(False)
-            self.doneButton.setEnabled(True)
-            self.editButton.setEnabled(True)
-            self.deleteButton.setEnabled(True)
-        
+        self.newButton.setEnabled(False)
+        self.doneButton.setEnabled(True)
+        self.editButton.setEnabled(True)
+        self.deleteButton.setEnabled(True)
+        selectedItem = self.yourNotesListWidget.currentRow()
+        self.lineEdit.setText(noteManager.noteList[selectedItem])
 
     def resetButtonStates(self):
         self.newButton.setEnabled(True)
