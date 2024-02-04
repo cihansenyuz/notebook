@@ -6,34 +6,70 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>747</width>
-    <height>678</height>
+    <width>636</width>
+    <height>560</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout" stretch="4,0,2,0">
+   <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,2,0">
     <item>
-     <widget class="QGroupBox" name="yourNotesBox">
-      <property name="font">
-       <font>
-        <pointsize>12</pointsize>
-       </font>
+     <widget class="QStackedWidget" name="stackedWidget">
+      <property name="currentIndex">
+       <number>1</number>
       </property>
-      <property name="title">
-       <string>Your Notes</string>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout_3">
-       <item>
-        <widget class="QListWidget" name="listWidget">
-         <property name="statusTip">
-          <string>This is your notebook page which lists all your notes</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
+      <widget class="QWidget" name="savedNotesPage">
+       <layout class="QVBoxLayout" name="verticalLayout_5">
+        <item>
+         <widget class="QGroupBox" name="yourNotesGroupBox">
+          <property name="font">
+           <font>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="title">
+           <string>Your Notes</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_3">
+           <item>
+            <widget class="QListWidget" name="yourNotesListWidget">
+             <property name="statusTip">
+              <string>This is your notebook page which lists all your notes</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="doneNotesPage">
+       <layout class="QVBoxLayout" name="verticalLayout_6">
+        <item>
+         <widget class="QGroupBox" name="doneNotesGroupBox">
+          <property name="font">
+           <font>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="title">
+           <string>Your Notes Marked as Done</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_7">
+           <item>
+            <widget class="QListWidget" name="doneNotesListWidget">
+             <property name="statusTip">
+              <string>This is your notebook page which lists all your notes marked as done</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
      </widget>
     </item>
     <item>
@@ -145,6 +181,16 @@
           </property>
           <property name="text">
            <string>Mark as Done</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="toggleListButton">
+          <property name="statusTip">
+           <string>Toggle between your notes and notes marked as done</string>
+          </property>
+          <property name="text">
+           <string>Toggle Note List</string>
           </property>
          </widget>
         </item>

@@ -17,32 +17,60 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QGroupBox, QHBoxLayout, QLabel,
     QLineEdit, QListWidget, QListWidgetItem, QMainWindow,
-    QPushButton, QSizePolicy, QSpacerItem, QStatusBar,
-    QTextBrowser, QVBoxLayout, QWidget)
+    QPushButton, QSizePolicy, QSpacerItem, QStackedWidget,
+    QStatusBar, QTextBrowser, QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(747, 678)
+        MainWindow.resize(636, 560)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.verticalLayout = QVBoxLayout(self.centralwidget)
         self.verticalLayout.setObjectName(u"verticalLayout")
-        self.yourNotesBox = QGroupBox(self.centralwidget)
-        self.yourNotesBox.setObjectName(u"yourNotesBox")
+        self.stackedWidget = QStackedWidget(self.centralwidget)
+        self.stackedWidget.setObjectName(u"stackedWidget")
+        self.savedNotesPage = QWidget()
+        self.savedNotesPage.setObjectName(u"savedNotesPage")
+        self.verticalLayout_5 = QVBoxLayout(self.savedNotesPage)
+        self.verticalLayout_5.setObjectName(u"verticalLayout_5")
+        self.yourNotesGroupBox = QGroupBox(self.savedNotesPage)
+        self.yourNotesGroupBox.setObjectName(u"yourNotesGroupBox")
         font = QFont()
         font.setPointSize(12)
-        self.yourNotesBox.setFont(font)
-        self.verticalLayout_3 = QVBoxLayout(self.yourNotesBox)
+        self.yourNotesGroupBox.setFont(font)
+        self.verticalLayout_3 = QVBoxLayout(self.yourNotesGroupBox)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
-        self.listWidget = QListWidget(self.yourNotesBox)
-        self.listWidget.setObjectName(u"listWidget")
+        self.yourNotesListWidget = QListWidget(self.yourNotesGroupBox)
+        self.yourNotesListWidget.setObjectName(u"yourNotesListWidget")
 
-        self.verticalLayout_3.addWidget(self.listWidget)
+        self.verticalLayout_3.addWidget(self.yourNotesListWidget)
 
 
-        self.verticalLayout.addWidget(self.yourNotesBox)
+        self.verticalLayout_5.addWidget(self.yourNotesGroupBox)
+
+        self.stackedWidget.addWidget(self.savedNotesPage)
+        self.doneNotesPage = QWidget()
+        self.doneNotesPage.setObjectName(u"doneNotesPage")
+        self.verticalLayout_6 = QVBoxLayout(self.doneNotesPage)
+        self.verticalLayout_6.setObjectName(u"verticalLayout_6")
+        self.doneNotesGroupBox = QGroupBox(self.doneNotesPage)
+        self.doneNotesGroupBox.setObjectName(u"doneNotesGroupBox")
+        self.doneNotesGroupBox.setFont(font)
+        self.verticalLayout_7 = QVBoxLayout(self.doneNotesGroupBox)
+        self.verticalLayout_7.setObjectName(u"verticalLayout_7")
+        self.doneNotesListWidget = QListWidget(self.doneNotesGroupBox)
+        self.doneNotesListWidget.setObjectName(u"doneNotesListWidget")
+
+        self.verticalLayout_7.addWidget(self.doneNotesListWidget)
+
+
+        self.verticalLayout_6.addWidget(self.doneNotesGroupBox)
+
+        self.stackedWidget.addWidget(self.doneNotesPage)
+
+        self.verticalLayout.addWidget(self.stackedWidget)
 
         self.horizontalLayout_3 = QHBoxLayout()
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
@@ -107,6 +135,11 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_4.addWidget(self.doneButton)
 
+        self.toggleListButton = QPushButton(self.centralwidget)
+        self.toggleListButton.setObjectName(u"toggleListButton")
+
+        self.verticalLayout_4.addWidget(self.toggleListButton)
+
         self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.verticalLayout_4.addItem(self.verticalSpacer)
@@ -139,7 +172,6 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addLayout(self.horizontalLayout_2)
 
-        self.verticalLayout.setStretch(0, 4)
         self.verticalLayout.setStretch(2, 2)
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QStatusBar(MainWindow)
@@ -148,14 +180,21 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
+        self.stackedWidget.setCurrentIndex(1)
+
+
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
-        self.yourNotesBox.setTitle(QCoreApplication.translate("MainWindow", u"Your Notes", None))
+        self.yourNotesGroupBox.setTitle(QCoreApplication.translate("MainWindow", u"Your Notes", None))
 #if QT_CONFIG(statustip)
-        self.listWidget.setStatusTip(QCoreApplication.translate("MainWindow", u"This is your notebook page which lists all your notes", None))
+        self.yourNotesListWidget.setStatusTip(QCoreApplication.translate("MainWindow", u"This is your notebook page which lists all your notes", None))
+#endif // QT_CONFIG(statustip)
+        self.doneNotesGroupBox.setTitle(QCoreApplication.translate("MainWindow", u"Your Notes Marked as Done", None))
+#if QT_CONFIG(statustip)
+        self.doneNotesListWidget.setStatusTip(QCoreApplication.translate("MainWindow", u"This is your notebook page which lists all your notes marked as done", None))
 #endif // QT_CONFIG(statustip)
         self.textLineLabel.setText(QCoreApplication.translate("MainWindow", u"Text Line:", None))
 #if QT_CONFIG(statustip)
@@ -181,6 +220,10 @@ class Ui_MainWindow(object):
         self.doneButton.setStatusTip(QCoreApplication.translate("MainWindow", u"Mark the selected note as done", None))
 #endif // QT_CONFIG(statustip)
         self.doneButton.setText(QCoreApplication.translate("MainWindow", u"Mark as Done", None))
+#if QT_CONFIG(statustip)
+        self.toggleListButton.setStatusTip(QCoreApplication.translate("MainWindow", u"Toggle between your notes and notes marked as done", None))
+#endif // QT_CONFIG(statustip)
+        self.toggleListButton.setText(QCoreApplication.translate("MainWindow", u"Toggle Note List", None))
 #if QT_CONFIG(statustip)
         self.exitButton.setStatusTip(QCoreApplication.translate("MainWindow", u"Save the changes and exit program", None))
 #endif // QT_CONFIG(statustip)
