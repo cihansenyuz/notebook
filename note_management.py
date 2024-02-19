@@ -2,9 +2,15 @@
 # this file is to manage note files and lists  #
 ################################################
 
-def getNotes(sourceFileName):
-    '''(string) -> list
-    This function reads the file and creates a list from the data, returns the list
+def getNotes(sourceFileName: str) -> list:
+    '''
+    This function reads the file and creates a list from notes, returns the list
+
+    Parameters:
+    - sourceFileName (str): path to the file
+
+    Return:
+    list: list of the notes in the file
     '''
     tempList = []
     try:
@@ -18,14 +24,31 @@ def getNotes(sourceFileName):
     return tempList
 
 #### slot functions ####
-def newAction(ui): # new note case, take input, append to the noteList
+def newAction(ui):
+    '''
+    Slot method to handle click action on newButton (Adding a new note)
+
+    Gets the content in lineEdit, appends it to noteList and updates QListWidgets
+
+    Parameters:
+    - ui: an instance of MainWindow that contains newButton
+    '''
     newNote = ui.lineEdit.text() + '\n'
     ui.lineEdit.clear()
     noteList.append(newNote)
     ui.printNotes()
     ui.textBrowser.append("Action: New note is added.")
 
-def doneAction(ui): # mark done case, take index, remove from the noteList and append to the doneList
+def doneAction(ui):
+    '''
+    Slot method to handle click action on doneButton (Marking a note as done)
+
+    Takes current index of yourNotesListWidget, removes related note from the noteList,
+    appends it to the doneList, and updates QListWidgets
+
+    Parameters:
+    - ui: an instance of MainWindow that contains newButton
+    '''
     ui.lineEdit.clear()
     index = ui.yourNotesListWidget.currentRow()
     tempNote = noteList[index]             # keep it temporarily
@@ -38,7 +61,16 @@ def doneAction(ui): # mark done case, take index, remove from the noteList and a
     tempStr = str(len(doneList)) + " note(s) are saved as done..."
     ui.textBrowser.append(tempStr)
 
-def editAction(ui): # edit note case, take index and input, remove old one, insert new one
+def editAction(ui):
+    '''
+    Slot method to handle click action on editButton (Editing an existing note)
+
+    Takes current index of yourNotesListWidget and content of lineEdit,
+    removes related note from the noteList, inserts new content to the list, and updates QListWidgets
+
+    Parameters:
+    - ui: an instance of MainWindow that contains newButton
+    '''
     newNote = ui.lineEdit.text() + '\n'
     ui.lineEdit.clear()
     index = ui.yourNotesListWidget.currentRow()
@@ -49,7 +81,16 @@ def editAction(ui): # edit note case, take index and input, remove old one, inse
     tempStr = "Action: " + str(index+1) + ". note is edited."
     ui.textBrowser.append(tempStr)
 
-def deleteAction(ui): # delete note case, take index, remove from the noteList
+def deleteAction(ui):
+    '''
+    Slot method to handle click action on deleteButton (Deleting existing note)
+
+    Takes current index of QListWidget according to current page,
+    removes related note from the noteList, and updates QListWidgets
+
+    Parameters:
+    - ui: an instance of MainWindow that contains newButton
+    '''
     if ui.stackedWidget.currentIndex() == 0:
         index = ui.yourNotesListWidget.currentRow()
         noteList.remove(noteList[index])
@@ -66,6 +107,11 @@ def deleteAction(ui): # delete note case, take index, remove from the noteList
         ui.textBrowser.append(tempStr)
 
 def exitAction(): # quiting process of the program, save the updated lists to txt files
+    '''
+    Slot method to handle click action on exitButton (Quiting the application)
+
+    Opens txt files, writes both note lists into the file, and exits the program
+    '''
     with open("notes.txt", "w") as file:
         for notes in noteList:
             file.write(str(notes))

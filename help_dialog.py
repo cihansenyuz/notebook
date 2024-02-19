@@ -10,4 +10,10 @@ class DialogWindow(QDialog, Ui_Dialog):
         self.show()
 
     def onReady2GoButtonClicked(self):
+        """
+        Slot method to handle click action on Ready2GoButton
+
+        Destroys itself to remove help window
+
+        """
         self.destroy()
