@@ -18,4 +18,12 @@ release v2.0 19.01.2024
 - text browser is implemented
 - action messages and welcome message are now displays on the text browser
 
+release v2.1 04.02.2024
+- Notes marked as done is now visible by a toggle button
+- Instructions for the application are now shown on a dialog window upon a help button
+- Clearing message history is possible by a clear button
+- Widget layouts slightly changed for better grouping
+- Some bugs are fixed in 'mark done' action
+- Some object and variable names are updated for better understanding the code
+
 Cihan Şenyüz
